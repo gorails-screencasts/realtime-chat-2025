@@ -1,0 +1,52 @@
+<h1><%= @conversation.name %></h1>
+
+<section class="grid">
+  <section>
+    <header role="group">
+      <h2>
+        Conversations
+      </h2>
+      <%= link_to new_conversation_path, class: "link-with-icon" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+        </svg>
+        New Conversation
+      <% end %>
+    </header>
+
+    <ul>
+      <% @conversations.each do %>
+        <div role="group">
+          <span><%= link_to it.name, it %></span>
+
+          <% if it.participant?(Current.user) %>
+            <%= button_to conversation_conversation_user_path(it), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "button-with-icon" do %>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </ul>
+
+    <h3>Participants</h3>
+    <ul>
+      <%= render @conversation.users %>
+    </ul>
+  </section>
+
+  <section>
+    <section>
+      <% if @conversation.participant?(Current.user) %>
+        <section>
+          <%= render @conversation.messages %>
+        </section>
+
+        <%= render "messages/form", conversation: @conversation %>
+      <% else %>
+        <%= button_to "Join #{@conversation.name}", conversation_conversation_user_path(@conversation) %>
+      <% end %>
+    </section>
+  </section>
+</section>

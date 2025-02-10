@@ -8,3 +8,48 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+ul {
+  padding: 0;
+
+  li {
+    list-style: none;
+  }
+}
+
+.flex {
+  display: flex;
+  gap: .5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.rounded-full {
+  border-radius: calc(infinity * 1px);
+}
+
+.message-avatar {
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.link-with-icon,
+.button-with-icon {
+  align-items: center;
+  display: flex;
+  gap: .25rem;
+
+  svg {
+    width: 24px;
+  }
+}
+
+.button-with-icon {
+  padding: 0rem;
+}

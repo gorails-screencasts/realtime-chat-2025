@@ -1,0 +1,13 @@
+<section>
+  <h1>Conversations</h1>
+
+  <%= link_to "Start a new conversation", new_conversation_path, role: "button" %>
+</section>
+
+<section class="grid">
+  <% @conversations.each do %>
+    <article>
+      <%= link_to it.name, it %>
+    </article>
+  <% end %>
+</section>
