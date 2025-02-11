@@ -39,7 +39,7 @@
   <section>
     <section>
       <% if @conversation.participant?(Current.user) %>
-        <section>
+        <section id="messages" class="overflow-auto">
           <%= render @messages %>
         </section>
 

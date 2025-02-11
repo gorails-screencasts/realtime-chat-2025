@@ -34,6 +34,10 @@ ul {
   border-radius: calc(infinity * 1px);
 }
 
+#messages {
+  height: 50vh;
+}
+
 .messenger {
   font-size: .75rem;
 }
