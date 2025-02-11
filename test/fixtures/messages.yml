@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyText
-  user: one
-  conversation: one
+  content: Where do we start?
+  user: collin
+  conversation: chat_app
+  created_at: <%= 2.hours.ago %>
 
 two:
-  content: MyText
-  user: two
-  conversation: two
+  content: Let's start with appending new messages with turbo streams.
+  user: kent
+  conversation: chat_app
+  created_at: <%= 1.hour.ago %>

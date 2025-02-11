@@ -40,7 +40,7 @@
     <section>
       <% if @conversation.participant?(Current.user) %>
         <section>
-          <%= render @conversation.messages %>
+          <%= render @messages %>
         </section>
 
         <%= render "messages/form", conversation: @conversation %>

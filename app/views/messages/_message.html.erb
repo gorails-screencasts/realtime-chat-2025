@@ -1,4 +1,8 @@
 <p class="flex items-center">
-  <span class="message-avatar"><%= user_avatar(message.user) %></span>
+  <div class="messenger">
+    <span class="message-avatar"><%= user_avatar(message.user) %></span>
+    <span><%= message.user.name.capitalize %></span>
+  </div>
+
   <%= message.content %>
 </p>

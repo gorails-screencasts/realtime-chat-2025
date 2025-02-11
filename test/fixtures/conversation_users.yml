@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
-  conversation: one
+  user: collin
+  conversation: chat_app
 
 two:
-  user: two
-  conversation: two
+  user: kent
+  conversation: chat_app
