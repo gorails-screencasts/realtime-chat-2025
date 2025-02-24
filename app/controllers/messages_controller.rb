@@ -3,8 +3,6 @@ class MessagesController < ApplicationController
 
   def create
     @message = @conversation.messages.create(message_params)
-
-    redirect_to @conversation, status: :see_other
   end
 
   private
