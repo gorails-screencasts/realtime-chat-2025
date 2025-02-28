@@ -37,7 +37,7 @@
   </section>
 
   <section>
-    <section>
+    <section data-controller="conversation">
       <% if @conversation.participant?(Current.user) %>
         <section id="messages" class="overflow-auto">
           <%= render @messages %>
