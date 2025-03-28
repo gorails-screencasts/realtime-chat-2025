@@ -4,5 +4,5 @@ class Message < ApplicationRecord
 
   validates :content, presence: true
 
-  broadcasts_to ->(message) { [ message.conversation, :messages ] }
+  broadcasts_refreshes_to ->(message) { [ message.conversation, :messages ] }
 end

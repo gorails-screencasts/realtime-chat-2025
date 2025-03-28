@@ -17,8 +17,7 @@ export default class extends Controller {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
       const form = event.target.closest("form");
-      form.requestSubmit();
-      form.reset();
+      form.submit();
     }
   }
 }
