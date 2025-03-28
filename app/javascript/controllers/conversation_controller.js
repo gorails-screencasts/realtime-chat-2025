@@ -6,7 +6,26 @@ export default class extends Controller {
 
   connect() {
     this.setScrollPosition();
-    this.messagesTarget.addEventListener("DOMNodeInserted", () => this.setScrollPosition())
+    this.observer = new MutationObserver((mutations) => {
+      const hasNewNodes = mutations.some(mutation =>
+        mutation.type === 'childList' && mutation.addedNodes.length > 0
+      );
+
+      if (hasNewNodes) {
+        this.setScrollPosition();
+      }
+    });
+
+    this.observer.observe(this.messagesTarget, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  disconnect() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
   }
 
   setScrollPosition() {
