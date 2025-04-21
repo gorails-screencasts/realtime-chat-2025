@@ -22,6 +22,10 @@ ul {
   gap: .5rem;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .hidden {
   display: none;
 }
@@ -36,10 +40,24 @@ ul {
 
 #messages {
   height: 50vh;
+  padding: .5rem;
 }
 
-.messenger {
-  font-size: .75rem;
+.message {
+  align-self: start;
+  background-color: rgb(247, 247, 248);
+  border-radius: .5rem;
+  padding: .25rem;
+  margin-bottom: 1rem;
+
+  p {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+}
+
+.messenger span {
+  font-size: 12px;
 }
 
 .message-avatar {

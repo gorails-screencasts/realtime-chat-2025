@@ -1,3 +1,16 @@
+<% content_for :head do %>
+  <%= tag.style do %>
+    .message[data-user-id="<%= Current.user.id %>"] {
+      align-self: end;
+      background-color: rgb(1, 114, 173);
+
+      * {
+        color: white;
+      }
+    }
+  <% end %>
+<% end %>
+
 <h1><%= @conversation.name %></h1>
 
 <section class="grid">
@@ -41,7 +54,7 @@
       <% if @conversation.participant?(Current.user) %>
         <%= turbo_stream_from @conversation, :messages %>
 
-        <section id="messages" class="overflow-auto" data-conversation-target="messages">
+        <section id="messages" class="overflow-auto flex flex-col" data-conversation-target="messages">
           <%= render @messages %>
         </section>
 
