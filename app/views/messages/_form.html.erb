@@ -1,4 +1,4 @@
-<%= form_with model: [ conversation, conversation.messages.new ] do %>
+<%= form_with model: [ conversation, conversation.messages.new ], id: "new-message-form" do %>
   <%= it.label :content, "Enter your message:" %>
   <%= it.text_area :content, autofocus: true, required: true %>
 
