@@ -4,5 +4,5 @@
     <span><%= message.user.name.capitalize %></span>
   </div>
 
-  <%= message.content %>
+  <%= simple_format(message.content) %>
 </p>
