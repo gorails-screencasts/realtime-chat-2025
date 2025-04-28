@@ -8,4 +8,11 @@ class Conversation < ApplicationRecord
   def participant?(user)
     users.include?(user)
   end
+
+  def has_unread_messages_for?(user)
+    if participant?(user)
+      conversation_user = conversation_users.find_by(user: user)
+      messages.where("created_at > ?", conversation_user.last_read_at).exists?
+    end
+  end
 end
