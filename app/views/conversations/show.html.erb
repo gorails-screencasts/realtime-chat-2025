@@ -1,3 +1,18 @@
+<% content_for :head do %>
+  <%= tag.style do %>
+    .message[data-user-id="<%= Current.user.id %>"] {
+      align-self: end;
+      background-color: rgb(1, 114, 173);
+
+      * {
+        color: white;
+      }
+    }
+  <% end %>
+<% end %>
+
+<%= turbo_stream_from :messages %>
+
 <h1><%= @conversation.name %></h1>
 
 <section class="grid">
@@ -16,15 +31,21 @@
 
     <ul>
       <% @conversations.each do %>
-        <div role="group">
-          <span><%= link_to it.name, it %></span>
-
+        <div class="flex items-center">
           <% if it.participant?(Current.user) %>
             <%= button_to conversation_conversation_user_path(it), method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "button-with-icon" do %>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
               </svg>
             <% end %>
+          <% end %>
+
+          <span><%= link_to it.name, it, data: { turbo: false } %></span>
+
+          <% if it.has_unread_messages_for?(Current.user) %>
+            <svg class="size-8 fill-green" viewBox="0 0 6 6" aria-hidden="true">
+              <circle cx="3" cy="3" r="3" />
+            </svg>
           <% end %>
         </div>
       <% end %>
@@ -39,7 +60,7 @@
   <section>
     <section data-controller="conversation">
       <% if @conversation.participant?(Current.user) %>
-        <section id="messages" class="overflow-auto">
+        <section id="messages" class="overflow-auto flex flex-col" data-conversation-target="messages">
           <%= render @messages %>
         </section>
 

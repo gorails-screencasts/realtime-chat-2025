@@ -1,6 +1,6 @@
-<%= form_with model: [ conversation, conversation.messages.new ], id: "new-message-form" do %>
+<%= form_with model: [ conversation, conversation.messages.new ], id: "new-message-form", data: {turbo_permanent: true} do %>
   <%= it.label :content, "Enter your message:" %>
-  <%= it.text_area :content, autofocus: true, required: true, data: { conversation_target: "textArea" } %>
+  <%= it.text_area :content, autofocus: true, required: true, data: { conversation_target: "textArea", action: "keydown->conversation#submitForm" } %>
 
   <%= it.submit nil, class: "hidden" %>
 <% end %>

@@ -7,6 +7,8 @@ class ConversationsController < ApplicationController
   def show
     @conversation = Conversation.includes(:messages).find(params.expect(:id))
     @messages = @conversation.messages.order(created_at: :asc)
+    conversation_user = @conversation.conversation_users.find_by(user: Current.user)
+    conversation_user.update(last_read_at: Time.current) if conversation_user.present?
   end
 
   def new

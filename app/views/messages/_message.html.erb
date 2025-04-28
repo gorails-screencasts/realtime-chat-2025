@@ -1,8 +1,8 @@
-<p class="flex items-center">
+<div class="message" data-user-id="<%= message.user.id %>">
   <div class="messenger">
     <span class="message-avatar"><%= user_avatar(message.user) %></span>
     <span><%= message.user.name.capitalize %></span>
   </div>
 
   <%= simple_format(message.content) %>
-</p>
+</div>
