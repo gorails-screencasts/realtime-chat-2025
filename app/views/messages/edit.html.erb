@@ -1,0 +1,7 @@
+<%= turbo_frame_tag @message do %>
+  <%= form_with model: [ @conversation, @message ], id: "edit-message-form" do %>
+    <%= it.text_area :content, autofocus: true, required: true, data: { conversation_target: "textArea", action: "keydown->conversation#submitForm" } %>
+
+    <%= it.submit nil, class: "hidden" %>
+  <% end %>
+<% end %>

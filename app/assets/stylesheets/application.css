@@ -49,6 +49,7 @@ ul {
   border-radius: .5rem;
   padding: .25rem;
   margin-bottom: 1rem;
+  min-width: 150px;
 
   p {
     font-size: 14px;
@@ -56,8 +57,13 @@ ul {
   }
 }
 
-.messenger span {
-  font-size: 12px;
+.messenger {
+  display: flex;
+  justify-content: space-between;
+
+  span {
+    font-size: 12px;
+  }
 }
 
 .message-avatar {
@@ -88,4 +94,9 @@ ul {
 
 .fill-green {
   fill: oklch(76.8% 0.233 130.85);
- }
+}
+
+#edit-message-form textarea {
+  color: black;
+  font-size: 14px;
+}
