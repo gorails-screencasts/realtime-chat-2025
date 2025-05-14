@@ -58,7 +58,7 @@
   </section>
 
   <section>
-    <section data-controller="conversation">
+    <section data-controller="conversation" data-conversation-unread-message-dom-id-value="<%= @first_unread_message.present? ? dom_id(@first_unread_message) : nil %>">
       <% if @conversation.participant?(Current.user) %>
         <section id="messages" class="overflow-auto flex flex-col" data-conversation-target="messages">
           <%= render @messages %>

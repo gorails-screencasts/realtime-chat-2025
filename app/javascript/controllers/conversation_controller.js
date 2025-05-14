@@ -3,6 +3,9 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="conversation"
 export default class extends Controller {
   static targets = [ "messages", "textArea" ]
+  static values = {
+      unreadMessageDomId: String
+    }
 
   connect() {
     this.setScrollPosition();
@@ -29,6 +32,16 @@ export default class extends Controller {
   }
 
   setScrollPosition() {
+    if (this.unreadMessageDomIdValue) {
+      const targetElement = document.getElementById(this.unreadMessageDomIdValue)
+
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
+
+    // Fallback to scrolling to bottom
     this.messagesTarget.scrollTop = this.messagesTarget.scrollHeight - this.messagesTarget.clientHeight 
   }
 

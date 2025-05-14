@@ -6,9 +6,13 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.includes(:messages).find(params.expect(:id))
-    @messages = @conversation.messages.order(created_at: :asc)
-    conversation_user = @conversation.conversation_users.find_by(user: Current.user)
-    conversation_user.update(last_read_at: Time.current) if conversation_user.present?
+    @messages = @conversation.messages.order(:created_at)
+
+    if (conversation_user = @conversation.conversation_users.find_by(user: Current.user))
+      last_read_at = conversation_user.last_read_at
+      conversation_user.update(last_read_at: Time.current)
+      @first_unread_message = @messages.find { it.created_at > last_read_at }
+    end
   end
 
   def new
